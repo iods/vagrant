@@ -35,7 +35,8 @@ VAGRANT_API_VERSION = "2"
 
 # Sets the local directory to sync
 VAGRANT_LOCAL_DIRECTORY = "./public"
-VAGRANT_LOCAL_PROVISION_SCRIPT = "bootstrap.sh"
+VAGRANT_LOCAL_CONFIG_DIRECTORY = "./config"
+VAGRANT_LOCAL_PROVISION_SCRIPT = "bin/bootstrap.sh"
 
 # Sets the environment and box to build from (see above)
 VAGRANT_BOX = "ubuntu/trusty64"
@@ -57,6 +58,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
 
   # Define folder sharing/sync for box
   config.vm.synced_folder VAGRANT_LOCAL_DIRECTORY, "/var/www/html", :nfs => true
+  config.vm.synced_folder VAGRANT_LOCAL_CONFIG_DIRECTORY, "/var/config", create: true
 
   # Define the script to use for provisioning
   config.vm.provision :shell, path: VAGRANT_LOCAL_PROVISION_SCRIPT

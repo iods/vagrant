@@ -13,24 +13,9 @@
 # Copyright: (c) 2017 Rye Miller, DRKSTR
 
 # Set box variables
-PROJECT_FOLDER='test'
 PROJECT_DB_NAME='testdb'
 PROJECT_DB_USERNAME='test'
 PROJECT_DB_PASSWORD='test'
-PROJECT_VHOST=$(
-    cat <<EOF
-    <VirtualHost *:80>
-        DocumentRoot "/var/www/html/${PROJECT_FOLDER}"
-        <Directory "/var/www/html/${PROJECT_FOLDER}">
-            AllowOverride All
-            Require all granted
-        </Directory>
-    </VirtualHost>
-EOF
-)
-
-# Create the desired directory
-sudo mkdir "var/www/html/${PROJECT_FOLDER}"
 
 # Update/Upgrade the Repository
 sudo apt-get update
@@ -64,14 +49,14 @@ then
 fi
 
 # Install PHP and dependencies
-sudo apt-get -y install php5 libapache-mod-php5 curl php5-curl php5-gd php5-mcrypt
+sudo apt-get -y install php5 libapache2-mod-php5 curl php5-curl php5-gd php5-mcrypt
 
 # Install Composer for PHP
-curl -s https://getcomposer.org/installer | php
+curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
 # Setup VirtualHosts file
-echo "${PROJECT_VHOST}" > /etc/apache2/sites-available/000-default.conf
+cat /var/config/apache2/default | tee /etc/apache2/sites-available/default
 
 # Enable Rewrite (mod_rewrite)
 sudo a2enmod rewrite
