@@ -20,7 +20,8 @@ CREATE TABLE `developers` (
     `name` varchar(255) NOT NULL,
     `handle` varchar(255),
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf-8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
 
 LOCK TABLES `developers` WRITE;
 
