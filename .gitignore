@@ -50,7 +50,7 @@ composer.phar
 /.vagrant/
 
 # --------------  Logs and DB  ------------- #
-*.sql
+!*.sql
 *.sqlite
 
 # -----------  Node JS .ignores  ----------- #
