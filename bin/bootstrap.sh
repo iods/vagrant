@@ -49,7 +49,7 @@ then
 fi
 
 # Install PHP and dependencies
-sudo apt-get -y install php5 libapache-mod-php5 curl php5-curl php5-gd php5-mcrypt
+sudo apt-get -y install php5 libapache2-mod-php5 curl php5-curl php5-gd php5-mcrypt
 
 # Install Composer for PHP
 curl -sS https://getcomposer.org/installer | php
